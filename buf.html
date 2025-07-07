@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oreki Verified Optimizer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
+
+    body {
+      font-family: "Lacquer", cursive;
+      margin: 0;
+      font-size: 16px;
+      color: #fff;
+      background-color: black;
+      overflow-x: hidden;
+    }
+
+    header .Logo img {
+      height: 40px;
+    }
+
+    header {
+      width: 1300px;
+      max-width: 90%;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 20% 80%;
+      grid-template-rows: -50px;
+    }
+
+    header nav ul {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+    }
+
+    header nav ul li {
+      list-style: none;
+      margin-left: 60px;
+      color: red;
+    }
+
+    .banner {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      margin-top: -50px;
+    }
+
+    .banner .content {
+    
+      text-align: center;
+      color: red;
+      text-shadow: 0 10px 50px #630707;
+      z-index: 10;
+    }
+
+    /* Hiệu ứng LED ARGB */
+    .banner .content .title {
+      font-size: 4em;
+      animation: animationBlur 5s linear infinite, ledFlow 5s linear infinite;
+      background: linear-gradient(
+        270deg,
+        #ff0000,
+        #ff8000,
+        #ffff00,
+        #00ff00,
+        #00ffff,
+        #0000ff,
+        #ff00ff,
+        #ff0000
+      );
+      background-size: 1500% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    @keyframes animationBlur {
+      0%, 80% {
+        filter: blur(0);
+      }
+      90% {
+        filter: blur(5px);
+      }
+      100% {
+        filter: blur(0);
+      }
+    }
+
+    @keyframes ledFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .banner .bgVideo {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      filter: brightness(0.9);
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 20px;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.1);
+      justify-content: space-between;
+      border: 1px solid red;
+      border-radius: 9999px;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      min-width: 200px;
+    }
+
+    .binary {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: lime;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .pill.active .binary {
+      animation: binaryAnim 5s steps(8) forwards;
+    }
+
+    @keyframes binaryAnim {
+      0% {
+        opacity: 1;
+        content: "0101010101";
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .toggle {
+      position: relative;
+      width: 40px;
+      height: 20px;
+      background: #ccc;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .toggle::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .toggle.on {
+      background: red;
+    }
+
+    .toggle.on::before {
+      transform: translateX(20px);
+    }
+
+    input[type="file"] {
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid red;
+      padding: 8px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="Logo">
+      <img src="orkei.png.jfif" alt="Oreki Logo">
+    </div>
+    <nav>
+      <ul>
+        <li>Oreki Verified</li>
+        <li>Oreki TrumregFF <br>
+            Bá Sàn Tử Chiến</li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="banner">
+    <video class="bgVideo" autoplay muted loop>
+      <source src="aim menu.mp4" type="video/mp4">
+    </video>
+    <script>
+  const video = document.getElementById("bgVideo");
+  video.playbackRate = 1.5; // Chạy nhanh 1.5 lần
+</script>
+
+
+    <div class="content">
+      <div class="title">Oreki Optimizer Panel</div>
+      <div class="content led-text">Oreki Verified</div>
+
+      <!-- Input file -->
+      <input type="file" accept=".mobileconfig,.oreki">
+
+      <!-- Controls -->
+      <div class="controls">
+        <div class="pill" id="pill1">
+          Oreki Aim Assist
+          <div class="toggle" onclick="toggle(this, 'pill1')"></div>
+          <div class="binary">
+            <video src="hack.mp4"></video>
+          </div>
+        </div>
+        <div class="pill" id="pill2">
+          Oreki Recoil Control
+          <div class="toggle" onclick="toggle(this, 'pill2')"></div>
+          <div class="binary"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oreki Verified Optimizer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
+
+    body {
+      font-family: "Lacquer", cursive;
+      margin: 0;
+      font-size: 16px;
+      color: #fff;
+      background-color: black;
+      overflow-x: hidden;
+    }
+
+    header .Logo img {
+      height: 40px;
+    }
+
+    header {
+      width: 1300px;
+      max-width: 90%;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 20% 80%;
+      grid-template-rows: -50px;
+    }
+
+    header nav ul {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+    }
+
+    header nav ul li {
+      list-style: none;
+      margin-left: 60px;
+      color: red;
+    }
+
+    .banner {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      margin-top: -50px;
+    }
+
+    .banner .content {
+    
+      text-align: center;
+      color: red;
+      text-shadow: 0 10px 50px #630707;
+      z-index: 10;
+    }
+
+    /* Hiệu ứng LED ARGB */
+    .banner .content .title {
+      font-size: 4em;
+      animation: animationBlur 5s linear infinite, ledFlow 5s linear infinite;
+      background: linear-gradient(
+        270deg,
+        #ff0000,
+        #ff8000,
+        #ffff00,
+        #00ff00,
+        #00ffff,
+        #0000ff,
+        #ff00ff,
+        #ff0000
+      );
+      background-size: 1500% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    @keyframes animationBlur {
+      0%, 80% {
+        filter: blur(0);
+      }
+      90% {
+        filter: blur(5px);
+      }
+      100% {
+        filter: blur(0);
+      }
+    }
+
+    @keyframes ledFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .banner .bgVideo {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      filter: brightness(0.9);
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 20px;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.1);
+      justify-content: space-between;
+      border: 1px solid red;
+      border-radius: 9999px;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      min-width: 200px;
+    }
+
+    .binary {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: lime;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .pill.active .binary {
+      animation: binaryAnim 5s steps(8) forwards;
+    }
+
+    @keyframes binaryAnim {
+      0% {
+        opacity: 1;
+        content: "0101010101";
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .toggle {
+      position: relative;
+      width: 40px;
+      height: 20px;
+      background: #ccc;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .toggle::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .toggle.on {
+      background: red;
+    }
+
+    .toggle.on::before {
+      transform: translateX(20px);
+    }
+
+    input[type="file"] {
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid red;
+      padding: 8px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="Logo">
+      <img src="orkei.png.jfif" alt="Oreki Logo">
+    </div>
+    <nav>
+      <ul>
+        <li>Oreki Verified</li>
+        <li>Oreki TrumregFF <br>
+            Bá Sàn Tử Chiến</li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="banner">
+    <video class="bgVideo" autoplay muted loop>
+      <source src="aim menu.mp4" type="video/mp4">
+    </video>
+    <script>
+  const video = document.getElementById("bgVideo");
+  video.playbackRate = 1.5; // Chạy nhanh 1.5 lần
+</script>
+
+
+    <div class="content">
+      <div class="title">Oreki Optimizer Panel</div>
+      <div class="content led-text">Oreki Verified</div>
+
+      <!-- Input file -->
+      <input type="file" accept=".mobileconfig,.oreki">
+
+      <!-- Controls -->
+      <div class="controls">
+        <div class="pill" id="pill1">
+          Oreki Aim Assist
+          <div class="toggle" onclick="toggle(this, 'pill1')"></div>
+          <div class="binary">0101010101010101</div>
+          </div>
+        </div>
+        <div class="pill" id="pill2">
+          Oreki Recoil Control
+          <div class="toggle" onclick="toggle(this, 'pill2')"></div>
+          <div class="binary">0101010101010101</div>
+        </div>
+        <div class="pill" id="pill3">
+          Oreki Touch AI Boost
+          <div class="toggle" onclick="toggle(this, 'pill3')"></div>
+          <div class="binary">0101010101010101</div>
+        </div>
+        <div class="pill" id="pill4">
+          Latency Stabilizer
+          <div class="toggle" onclick="toggle(this, 'pill4')"></div>
+          <div class="binary">0101010101010101</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggle(el, pillId) {
+      el.classList.toggle("on");
+      const pill = document.getElementById(pillId);
+      pill.classList.toggle("active");
+
+      const binary = pill.querySelector(".binary");
+      binary.style.animation = "none";
+      void binary.offsetWidth;
+      binary.style.animation = null;
+    }
+  </script>
+</body>
+</html>
+</div>
+        <div class="pill" id="pill4">
+          Oreki Buff Aim
+          <div class="toggle" onclick="toggle(this, 'pill4')"></div>
+             <div class="binary">activation successful</div>
+        </div>
+        </div>
+        <div class="pill" id="pill3">
+          Oreki Touch AI Boost
+          <div class="toggle" onclick="toggle(this, 'pill3')"></div>
+            <div class="binary">activation successful</div>
+        </div>
+        <div class="pill" id="pill4">
+          Latency Stabilizer
+          <div class="toggle" onclick="toggle(this, 'pill4')"></div>
+             <div class="binary">activation successful</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggle(el, pillId) {
+      el.classList.toggle("on");
+      const pill = document.getElementById(pillId);
+      pill.classList.toggle("active");
+
+      const binary = pill.querySelector(".binary");
+      binary.style.animation = "none";
+      void binary.offsetWidth;
+      binary.style.animation = null;
+    }
+  </script>
+</body>
+</html>

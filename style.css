@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
+
+body {
+  font-family: "Lacquer", cursive;
+  margin: 0;
+  font-size: 16px;
+}
+
+header .Logo img {
+  height: 40px;
+}
+
+header {
+  width: 1300px;
+  max-width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 50px;
+}
+
+header nav ul {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+header nav ul li {
+  list-style: none;
+  margin-left: 60px;
+  color: #fff;
+}
+
+.banner {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: -50px;
+}
+
+.banner .content {
+  text-align: center;
+  color: red;
+  text-shadow: 0 10px 50px #630707;
+}
+
+/* ==========================================
+   🌈 LED 1 tỷ màu chạy ngang ARGB cho chữ
+   ========================================== */
+.banner .content .title {
+  font-size: 6em;
+  font-weight: bold;
+  background: linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    green,
+    cyan,
+    blue,
+    purple,
+    red
+  );
+  background-size: 800% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ledARGB 5s linear infinite, animationBlur 5s linear infinite;
+}
+
+/* 👇 Hiệu ứng màu chạy từ trái sang phải */
+@keyframes ledARGB {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 👇 Hiệu ứng mờ nhẹ cho chữ */
+@keyframes animationBlur {
+  0%, 80% {
+    filter: blur(0);
+  }
+  90% {
+    filter: blur(5px);
+  }
+  100% {
+    filter: blur(0);
+  }
+}
+
+.banner .content .des {
+  text-align: left;
+  rotate: -5deg;
+  color: red;
+}
+
+.banner .bgVideo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  filter: brightness(0.9);
+}
